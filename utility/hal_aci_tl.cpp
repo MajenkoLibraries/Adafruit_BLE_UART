@@ -74,12 +74,22 @@ static const uint8_t dreqinttable[] = {
   14, 5,
   7,  6,
   18, 7,
-#elif  defined(_BOARD_LENNY_)
-  2, 0,
-  3, 1,
-  4, 2,
-  5, 3,
-  6, 4,
+#elif  defined(__PIC32__)
+#ifdef PIN_INT0
+    PIN_INT0, 0,
+#endif
+#ifdef PIN_INT1
+    PIN_INT1, 1,
+#endif
+#ifdef PIN_INT2
+    PIN_INT2, 2,
+#endif
+#ifdef PIN_INT3
+    PIN_INT3, 3,
+#endif
+#ifdef PIN_INT4
+    PIN_INT4, 4,
+#endif
 #else
 #error Your board has no interrupts defined. Check utility/hal_aci_tl.cpp
 #endif

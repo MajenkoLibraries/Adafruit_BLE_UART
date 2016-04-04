@@ -6,7 +6,7 @@
 
 This version has been modified to work specifically with chipKIT boards.
 
-At the moment only the chipKIT Lenny is supported, but more boards will soon be added.
+This should work on all the MX based boards. It seems to have issues on the MZ based ones though at the moment.
 
 ----
 
