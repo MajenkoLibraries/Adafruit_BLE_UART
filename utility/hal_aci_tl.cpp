@@ -74,6 +74,14 @@ static const uint8_t dreqinttable[] = {
   14, 5,
   7,  6,
   18, 7,
+#elif  defined(_BOARD_LENNY_)
+  2, 0,
+  3, 1,
+  4, 2,
+  5, 3,
+  6, 4,
+#else
+#error Your board has no interrupts defined. Check utility/hal_aci_tl.cpp
 #endif
 };
 
@@ -301,9 +309,9 @@ void hal_aci_tl_init()
   digitalWrite(HAL_IO_RADIO_RESET, 1);
   delay(100);
   digitalWrite(HAL_IO_RADIO_RESET, 0);
-  #ifdef __arm__
+//  #ifdef __arm__
   delayMicroseconds(10);
-  #endif
+//  #endif
   digitalWrite(HAL_IO_RADIO_RESET, 1);
   
   digitalWrite(SCK,  0);
@@ -321,7 +329,7 @@ void hal_aci_tl_init()
   delay(30); //Wait for the nRF8001 to get hold of its lines - the lines float for a few ms after the reset
   if (HAL_IO_RADIO_IRQ != 0xFF)
     SPI.usingInterrupt(HAL_IO_RADIO_IRQ); // add checking for spi conflicts
-    attachInterrupt(HAL_IO_RADIO_IRQ, m_rdy_line_handle, LOW); 
+    attachInterrupt(HAL_IO_RADIO_IRQ, m_rdy_line_handle, FALLING); 
   // We use the LOW level of the RDYN line as the atmega328 can wakeup from sleep only on LOW
 }
 
@@ -411,7 +419,7 @@ hal_aci_data_t * hal_aci_tl_poll_get(void)
 #if defined(__AVR__)
   sleep_enable();
 #endif
-  attachInterrupt(HAL_IO_RADIO_IRQ, m_rdy_line_handle, LOW);  
+  attachInterrupt(HAL_IO_RADIO_IRQ, m_rdy_line_handle, FALLING);  
 
 
   

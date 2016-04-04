@@ -1,5 +1,15 @@
 # Adafruit_nRF8001 #
 
+----
+
+## chipKIT Version ##
+
+This version has been modified to work specifically with chipKIT boards.
+
+At the moment only the chipKIT Lenny is supported, but more boards will soon be added.
+
+----
+
 Driver and example code for Adafruit's nRF8001 Bluetooth Low Energy Breakout.
 
 ## PINOUT ##
